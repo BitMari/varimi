@@ -21,9 +21,17 @@ testinvoke ed72a3d1e35420a8208f3f32e8e2815370ed1ed3 RegisterFarmer ["Name","AK2n
 testinvoke ed72a3d1e35420a8208f3f32e8e2815370ed1ed3 QueryFarmer ["Name"]
 
 """
-from boa.blockchain.vm.Neo.Runtime import Log, Notify
+from boa.blockchain.vm.Neo.Runtime import Log, Notify, GetTrigger, CheckWitness
+from boa.blockchain.vm.Neo.Action import RegisterAction
+
+from boa.blockchain.vm.Neo.TransactionType import InvocationTransaction
+from boa.blockchain.vm.Neo.Transaction import *
+
+from boa.blockchain.vm.System.ExecutionEngine import InvocationTransaction
+from boa.blockchain.vm.Neo.TriggerType import Application, Verification
+from boa.blockchain.vm.Neo.Output import GetScriptHash, GetValue, GetAssetId
 from boa.blockchain.vm.Neo.Storage import Get, Put,Delete, GetContext
-from boa.blockchain.vm.Neo.Runtime import GetTrigger,CheckWitness
+
 from boa.code.builtins import concat
 
 

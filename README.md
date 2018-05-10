@@ -7,6 +7,12 @@
 A platform for agriculture [smart contracts](https://en.wikipedia.org/wiki/Smart_contract) based on the [NEO blockchain](https://neo.org/) . 
 [BitMari](https://www.bitmari.com) is building an infrastructure to support smart contracts  in agriculture as well as lower barrier for developers to code blockchain smart contracts. This comes after over 2 years of research work and working with women farmers in Zimbabwe, Africa.
 
+## Proposed system architecture 
+
+<img src="https://github.com/BitMari/varimi/blob/master/assets/proposed%20system%20architecture.png" alt="BitMari Smart Farm Contracts" width="620">
+
+[Demo Farm Project Listing UI](https://www.bitmari.com/smartfarmcontract/public/project)
+
 ## Getting Started
 
 To test develop and deploy your NEO python smart contracts on your local machine you will have to setup the environment by following the tutorial link below.
@@ -39,7 +45,7 @@ Run a testinvoke on the contract
 
 ## Roadmap 
 
-Work in Progress
+[Press Release](https://medium.com/@bitmari_/bitmari-to-launch-smart-farm-contracts-to-aid-in-agricultural-funding-in-africa-based-on-the-neo-8df26f0b3347)
  
 
 ## Contributing

@@ -1,4 +1,5 @@
 """
+## STAGE TWO : FARM REGISTRATION
 Testing:
 neo> build varimi/smartFarmContracts.py test 0710 05 True False query ["Name"]
 neo> build varimi/smartFarmContracts.py test 0710 05 True False register ["Name","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y"]

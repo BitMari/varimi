@@ -1,1 +1,0 @@
-## STAGE FOUR : Buyer REGISTRATION

@@ -9,7 +9,7 @@ A platform for agriculture [smart contracts](https://en.wikipedia.org/wiki/Smart
 
 ## Proposed system architecture 
 
-<img src="https://github.com/BitMari/varimi/blob/master/assets/proposed%20system%20architecture.png" alt="BitMari Smart Farm Contracts" width="620">
+<img src="https://github.com/BitMari/varimi/blob/master/assets/proposedsystemarchitecture1.png" alt="BitMari Smart Farm Contracts" width="620">
 
 [Demo Farm Project Listing UI](https://www.bitmari.com/smartfarmcontract/public/project)
 

@@ -17,12 +17,12 @@ from boa.interop.Neo.Storage import Get, Put,Delete, GetContext
 from boa.builtins import concat
 
 # import btm points 
-from btm.txio import get_asset_attachments
-from btm.token import *
-from btm.crowdsale import *
-from btm.nep5 import *
-from btm.arrayUtil import *
-from btm.serialization import *
+# from btm.txio import get_asset_attachments
+# from btm.token import *
+# from btm.crowdsale import *
+# from btm.nep5 import *
+# from btm.arrayUtil import *
+# from btm.serialization import *
 
 # import other agriculture contracts
 

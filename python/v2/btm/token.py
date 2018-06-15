@@ -16,24 +16,24 @@ TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
-TOKEN_TOTAL_SUPPLY = 10000000 * 100000000  # 10m total supply * 10^8 ( decimals)
+TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 ( decimals)
 
-TOKEN_INITIAL_AMOUNT = 2500000 * 100000000  # 2.5m to owners * 10^8
+TOKEN_INITIAL_AMOUNT = 25000000 * 100000000  # 25m to owners * 10^8
 
 # for now assume 1 dollar per token, and one neo = 40 dollars * 10^8
-TOKENS_PER_NEO = 40 * 100000000
+TOKENS_PER_NEO = 400 * 100000000
 
 # for now assume 1 dollar per token, and one gas = 20 dollars * 10^8
-TOKENS_PER_GAS = 20 * 100000000
+TOKENS_PER_GAS = 200 * 100000000
 
 # maximum amount you can mint in the limited round ( 500 neo/person * 40 Tokens/NEO * 10^8 )
 MAX_EXCHANGE_LIMITED_ROUND = 500 * 40 * 100000000
 
-# when to start the crowdsale
-BLOCK_SALE_START = 755000
+# when to start the crowdsale 755000
+BLOCK_SALE_START = 10
 
-# when to end the initial limited round
-LIMITED_ROUND_END = 755000 + 10000
+# when to end the initial limited round 755000 + 10000
+LIMITED_ROUND_END = 999_999_999_999
 
 KYC_KEY = b'kyc_ok'
 

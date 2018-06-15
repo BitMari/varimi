@@ -3,8 +3,8 @@ from boa.interop.Neo.Runtime import CheckWitness
 from boa.interop.Neo.Action import RegisterAction
 from boa.interop.Neo.Storage import Get, Put
 from boa.builtins import concat
-from nex.token import *
-from nex.txio import get_asset_attachments
+from btm.token import *
+from btm.txio import get_asset_attachments
 
 # OnInvalidKYCAddress = RegisterAction('invalid_registration', 'address')
 OnKYCRegister = RegisterAction('kyc_registration', 'address')

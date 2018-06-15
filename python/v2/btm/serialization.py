@@ -1,7 +1,8 @@
-from boa.builtins import concat, list, range
-
 # commonly called for data pulled from storage
 # very helpful for storing arrays
+
+from boa.builtins import concat, list, range
+
 def deserialize_bytearray(data):
 
     print('deserialize_bytearray')

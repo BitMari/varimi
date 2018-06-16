@@ -38,17 +38,17 @@ from boa.builtins import concat
 # from btm.crowdsale import *
 # from btm.nep5 import *
 # from btm.arrayUtil import *
-# from btm.serialization import *
+from btm.serialization import *
 
 # import other agriculture contracts
 
 # Contract Variables
-BTM_STORAGE_PREFIX = 'BTMSMARTCONTRACT'
+BTM_STORAGE_PREFIX = 'BTM'
 BTM_CONTRACT  = 'CLOSED'
 BTM_REGISTER_FEE = 0 * 100_000_000  # 10 to owners * 10^8 / for now/test free
-BTM_TRANSFER_FEE = 0 * 100_000_000   # 5 to owners * 10^8 / for now/test free
+BTM_Transfer_FEE = 0 * 100_000_000   # 5 to owners * 10^8 / for now/test free
 BTM_CONTRACT_ADMIN = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
-BTM_METHODS = ['QueryFarmContract','QueryFarmContractAddress', 'UnregisterFarmContract','RegisterFarmContract','TransferFarmContract']
+BTM_METHODS = ['QueryFarmContract', 'UnregisterFarmContract','RegisterFarmContract','TransferFarmContract']
 
 #main program with contract operations
 def Main(operation, args):
@@ -56,38 +56,6 @@ def Main(operation, args):
     if nargs == 0:
         print("No details entered")
         return 0
-
-    ## Registrations that access different features of the agriculture smartcontracts   
-    ## Retreive the address/name associated with a given name
-    ## Anyone can call 
-    ## Concatination point to the reffered registry
-
-    elif operation == 'QueryFarmContract':
-        FarmContract_name = args[0]
-        print("Query Farm Contract")
-        print("Entered Arguments: [FarmContract_name]")
-        return QueryFarmContract(FarmContract_name)
-
-    # Retreive a list of details associated with this address
-    # Anyone can call
-    # Output: array as bytearray
-    ## Concatination point to the reffered registry
-
-    elif operation == 'QueryFarmContractAddress':
-        Owner_address = args[0]
-        print("Query Farm Contract Address")
-        print("Entered Arguments: [Owner_address]")
-        return QueryFarmContractAddress(Owner_address)
-
-    # remove a link between a given registry and it's address
-    # can only be called by registry owner
-    ## Concatination point to the reffered registry
-
-    elif operation == 'UnregisterFarmContract':
-        FarmContract_name = args[0]
-        print("Unregister Farm Contract ")
-        print("Entered Arguments: [FarmContract_name]")
-        return UnregisterFarmContract(FarmContract_name)
 
     # create a registry to address association for a small fee
     # can only be called by owner of address being registered
@@ -98,94 +66,166 @@ def Main(operation, args):
             print("required arguments: [FarmContract] [owner]")
             return 0
         FarmContract_name = args[0]
-        Owner = args[1]  
-		Farmer_id  = args[2]  
-		Buyer_id = args[3]  
-		Project_id = args[4]  
-		Contract_id = args[5]  
-		Balance = args[6]  
-		Status = args[7]  
+        OwnerNeoAddress = args[1]  
+        Farmer_id  = args[2]  
+        Buyer_id = args[3]  
+        Project_id = args[4]  
+        Contract_id = args[5]  
+        Balance = args[6]  
+        Status = args[7]  
         print("Register Farm Contract ")
-        print("Entered Arguments: [FarmContract_name][Owner][Farmer_id][Buyer_id][Project_id][Contract_id][Balance][Status]")
-        return RegisterFarmContract(FarmContract_name,Owner,Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status)
+        print("Entered Arguments: [FarmContract_name][OwnerNeoAddress][Farmer_id][Buyer_id][Project_id][Contract_id][Balance][Status]")
+        return RegisterFarmContract(FarmContract_name,OwnerNeoAddress,Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status)
 
-    # create transfer of ownership of registry to new address association for a small fee
+
+    ## Registrations that access different features of the agriculture smartcontracts   
+    ## Retreive the address/name associated with a given name
+    ## Anyone can call 
+    ## Concatination point to the reffered registry
+
+    elif operation == 'QueryFarmContract':
+        FarmContract_name = args[0]
+        OwnerNeoAddress = args[1]
+        print("Query Farm Contract")
+        print("Entered Arguments: [FarmContract_name] [OwnerNeoAddress]")
+        return QueryFarmContract(FarmContract_name,OwnerNeoAddress)
+
+    # create Transfer of ownership of registry to new address association for a small fee
     # can only be called by owner of address being registered
     ## Concatination point to the reffered registry
 
     elif operation == 'TransferFarmContract':
         if nargs < 2:
-            print("required arguments: [FarmContract_name] [to_address]")
+            print("required arguments: [FarmContract_name] [OwnerNeoAddress] [to_address]")
             return 0
         FarmContract_name = args[0]
-        to_address = args[1]
+        OwnerNeoAddress = args[1]
+        to_address = args[2]
         print("Transfer Farm Contract ")
-        print("Entered Arguments: [FarmContract_name] [to_address]")
-        return TransferFarmContract(FarmContract_name, to_address) 
+        print("Entered Arguments: [FarmContract_name][OwnerNeoAddress][to_address]")
+        return TransferFarmContract(FarmContract_name,OwnerNeoAddress, to_address) 
+
+    # remove a link between a given registry and it's address
+    # can only be called by registry owner
+    ## Concatination point to the reffered registry
+
+    elif operation == 'UnregisterFarmContract':
+        FarmContract_name = args[0]
+        OwnerNeoAddress = args[1]
+        print("Unregister Farm Contract ")
+        print("Entered Arguments: [FarmContract_name] [OwnerNeoAddress]")
+        return UnregisterFarmContract(FarmContract_name,OwnerNeoAddress)
+
+
+## ~~~~~~~~~~~~~~~~~~~~~Digital Coupon and contract progress updates~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## This will be used to update contract balance and contract status
+
+    elif operation == 'UpdateFarmContract':
+        if nargs < 6:
+            print("required arguments: [FarmContract] [owner]")
+            return 0
+        FarmContract_name = args[0]
+        OwnerNeoAddress = args[1]  
+        Farmer_id  = args[2]  
+        Buyer_id = args[3]  
+        Project_id = args[4]  
+        Contract_id = args[5]  
+        Balance = args[6]  
+        Status = args[7]  
+
+        print("Update Farm Contract Status")
+        print("Entered Arguments: [FarmContract_name][OwnerNeoAddress][Farmer_id][Buyer_id][Project_id][Contract_id][Balance][Status]")
+
+        storage_key = concat(FarmContract_name, OwnerNeoAddress)
+        context = GetContext()
+
+        if not CheckWitness(OwnerNeoAddress):
+               Notify("Owner argument is not the same as the person who registered")
+               return False
+
+        raw_data = [Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status]
+        farm_contract_info_serialised = serialize_array(raw_data)
+
+        putRegistry(context, storage_key,farm_contract_info_serialised)
+        return True
+
 
 
 
 ## core registry functions
-def QueryFarmContract(FarmContract_name):
-    msg = concat("QueryFarmContract: ", FarmContract_name)
-    Notify(msg)
+def RegisterFarmContract(FarmContract_name,OwnerNeoAddress,Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status):
+    msg = concat("RegisterFarmContract: ", FarmContract_name)
+    msg2 = concat(msg, OwnerNeoAddress)
+    Notify(msg2)
 
-    context = GetContext()
-    Owner = getRegistry(context, FarmContract_name)
-    if not owner:
-        Notify("This Farm Contract is not yet registered")
-        return False
+    storage_key = concat(FarmContract_name, OwnerNeoAddress)
 
-    Notify(Owner)
-    return Owner
-
-
-def RegisterFarmContract(FarmContract_name,Owner,Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status):
-    msg = concat("RegisterRegistry: ", Registry_name)
-    Notify(msg)
-
-    if not CheckWitness(owner):
+    if not CheckWitness(OwnerNeoAddress):
         Notify("Owner argument is not the same as the person who registered")
         return False
 
     context = GetContext()
-    exists = Get(context, Registry_name)
+    exists = Get(context, storage_key)
     if exists:
-        Notify("Registry is already registered")
+        Notify("Contract is already registered")
         return False
 
-    putRegistry(context, FarmContract_name,Owner,Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status)
+    raw_data = [Farmer_id,Buyer_id,Project_id,Contract_id,Balance,Status]
+    farm_contract_info_serialised = serialize_array(raw_data)
+
+    putRegistry(context, storage_key,farm_contract_info_serialised)
     return True
 
+def QueryFarmContract(FarmContract_name,OwnerNeoAddress):
+    msg = concat("QueryFarmContract: ", FarmContract_name)
+    msg2 = concat(msg, OwnerNeoAddress)
+    Notify(msg2)
 
-def TransferFarmContract(FarmContract_name, to_address):
-    msg = concat("TransferFarmContract: ", FarmContract_name)
-    Notify(msg)
+    storage_key = concat(FarmContract_name, OwnerNeoAddress)
 
     context = GetContext()
-    owner = Get(context, FarmContract_name)
-    if not owner:
-        Notify("Registry is not yet registered")
+    Owner = getRegistry(context, storage_key)
+    if not Owner:
+        Notify("This Farm Contract is not yet registered")
+        return False
+    farm_contract_info = deserialize_bytearray(Owner)
+    Notify(farm_contract_info)
+    return farm_contract_info
+
+def TransferFarmContract(FarmContract_name,OwnerNeoAddress, to_address):
+    msg = concat("TransferFarmContract: ", FarmContract_name)
+    msg2 = concat(msg, OwnerNeoAddress)
+    Notify(msg2)
+
+    storage_key = concat(FarmContract_name, OwnerNeoAddress)
+
+    context = GetContext()
+    Owner = Get(context, storage_key)
+    if not Owner:
+        Notify("This farm contract is not yet registered")
         return False
 
-    if not CheckWitness(owner):
-        Notify("This person is not the owner, Registry ownership cannot be transfered")
+    if not CheckWitness(Owner):
+        Notify("This person is not the Owner, Farm Contract ownership cannot be Transfered")
         return False
 
     if not len(to_address) != 34:
         Notify("Invalid new owner neo address. Must be exactly 34 characters")
         return False
 
-    putRegistry(context, FarmContract_name, to_address)
+    putRegistry(context, storage_key, to_address)
     return True
 
 
-def UnregisterFarmContract(FarmContract_name):
-    msg = concat("RemoveFarmContract: ", FarmContract_name)
-    Notify(msg)
+def UnregisterFarmContract(FarmContract_name,OwnerNeoAddress):
+    msg = concat("UnregisterFarmContract: ", FarmContract_name)
+    msg2 = concat(msg, OwnerNeoAddress)
+    Notify(msg2)
+
+    storage_key = concat(FarmContract_name, OwnerNeoAddress)
 
     context = GetContext()
-    owner = Get(context, FarmContract_name)
+    owner = Get(context, storage_key)
     if not owner:
         Notify("FarmContract is not yet registered")
         return False
@@ -194,33 +234,14 @@ def UnregisterFarmContract(FarmContract_name):
         Notify("This person is not the owner of the FarmContract, the FarmContract cannot be deleted")
         return False
 
-    removeRegistry(context, FarmContract_name)
+    removeRegistry(context, storage_key)
     return True
 
-#Generate storage key  storageKey = CreateStorageKey(A,B)
 
-def CreateStorageKey(s1, s2):
-    """Concatenate arguments for use as storage key.
-    
-    Args:
-        s1 (str):
-            first string to be used in concatenation.
-        s2 (str):
-            second string to be used in concatenation.
-    Return:
-        (str): args concatenated together with a '.' between each value.
-    """
-
-    withPeriod = concat(s1, '.')
-    return concat(withPeriod, s2)
-
- # Contract Storage Functions
-
-
+# Contract Storage Functions
 
 def putRegistry(ctx, key, value):
     return Put(ctx, prefixStorageKey(key), value)
-
 
 def getRegistry(ctx, key):
     return Get(ctx,  prefixStorageKey(key))
@@ -229,7 +250,6 @@ def getRegistry(ctx, key):
 def removeRegistry(ctx, key):
     return Delete(ctx, prefixStorageKey(key))
 
-## Add prefix to records
 
 def prefixStorageKey(key):
     return concat(BTM_STORAGE_PREFIX, key)

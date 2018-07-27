@@ -10,11 +10,11 @@ VERSION = "1.1.0"
 # All other features of the contract will be accesed from this file
 # These include the digital coupon and farm contract registration
 ##  examples invocations according to the above  
-##  build /smart-contracts/smart-farm-contracts.py    0x12f4f99e6f61ced8d41683c84a33b1bb2c9b49c6
+##  build /smart-contracts/smart-farm-contracts.py     "hash": "0xfb0f9c27f9ec75820b1074171aa6d03238b48dda"
 ##  import contract /smart-contracts/smart-farm-contracts.avm 0710 05 True False
-## testinvoke 12f4f99e6f61ced8d41683c84a33b1bb2c9b49c6 RegisterRegistry ["Tongayi","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y", "{'name':'Tongayi', 'surname': 'Choto','age':'30', 'gender':'male'}"]
-## testinvoke 12f4f99e6f61ced8d41683c84a33b1bb2c9b49c6 QueryRegistry ["Tongayi"]
-## testinvoke 3889c247702188d30fb9f864b7f01f4f95635010 RemoveRegistry ["BSFCuserneoaddress.type.name.surname","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y"]
+## testinvoke fb0f9c27f9ec75820b1074171aa6d03238b48dda RegisterFarmContract ["Tongayi","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y", "00","11","22","33","560","funded_pending"]
+## testinvoke fb0f9c27f9ec75820b1074171aa6d03238b48dda QueryFarmContract ["Tongayi","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y"]
+## testinvoke fb0f9c27f9ec75820b1074171aa6d03238b48dda RemoveRegistry ["BSFCuserneoaddress.type.name.surname","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y"]
 ##
 ## testinvoke 3889c247702188d30fb9f864b7f01f4f95635010 TransferRegistry ["BSFCuserneoaddress.type.name.surname","AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y"]
 ## 
@@ -119,6 +119,7 @@ def Main(operation, args):
 
 ## ~~~~~~~~~~~~~~~~~~~~~Digital Coupon and contract progress updates~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## This will be used to update contract balance and contract status
+## A service from an oracle will be posting updates to 
 
     elif operation == 'UpdateFarmContract':
         if nargs < 6:
